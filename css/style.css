@@ -1,9 +1,24 @@
+#button {
+  margin: 20px 0 20px 0;
+}
+
 .container {
   display: flex;
+  flex-direction: row;
+  width: 960px;
+  height: 960px;
+  border: 1px solid black;
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 
   .grid {
-    width: 40px;
-    height: 40px;
+    flex-grow: 1;
+    cursor: move;
     border: 1px solid black;
+    transition: all 0.5s ease-in;
   }
 }

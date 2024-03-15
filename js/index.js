@@ -1,14 +1,40 @@
 const container = document.querySelector(".container")
+const button = document.querySelector("#button")
 
-for (let i = 0; i < 16; i++) {
-  const columnGrid = document.createElement("div")
+button.addEventListener("click", (event) => {
+  event.preventDefault()
 
-  for (let j = 0; j < 16; j++) {
-    const grid = document.createElement("div")
-    grid.classList.add("grid")
-    grid.textContent = j
-    columnGrid.appendChild(grid)
+  const newNumber = parseInt(
+    prompt("give the number of squares per side(max: 100): ")
+  )
+
+  if (newNumber < 101 && newNumber > 0) {
+    resizeSquares(newNumber)
+  } else {
+    alert("Please enter a valid number!")
   }
+})
 
-  container.appendChild(columnGrid)
+function resizeSquares(numberSquares) {
+  container.innerHTML = ""
+
+  for (let i = 1; i <= numberSquares; i++) {
+    const groupGrid = document.createElement("div")
+    groupGrid.classList.add("group")
+
+    for (let j = 1; j <= numberSquares; j++) {
+      const grid = document.createElement("div")
+      grid.classList.add("grid")
+
+      grid.addEventListener("mouseenter", (event) => {
+        event.target.style.cssText = "background-color: red;"
+      })
+
+      groupGrid.appendChild(grid)
+    }
+
+    container.appendChild(groupGrid)
+  }
 }
+
+resizeSquares(16)
